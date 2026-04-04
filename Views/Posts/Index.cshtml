@@ -1,0 +1,89 @@
+@using System.Linq
+@model IEnumerable<IlaydaTechBlog.Models.Post>
+
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<div class="container py-4">
+    <div class="admin-header">
+        <div class="row align-items-center g-3">
+            <div class="col-md-8">
+                <h1 class="mb-2">Yönetim Paneli</h1>
+                <p class="mb-0">
+                    Blog yazılarını buradan ekleyebilir, düzenleyebilir ve silebilirsin.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a asp-controller="AdminPosts" asp-action="Create" class="btn btn-warning fw-semibold">
+                    + Yeni Yazı Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="admin-card text-center">
+                <h5 class="text-muted">Toplam Yazı</h5>
+                <h2 class="fw-bold mb-0">@Model.Count()</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-card text-center">
+                <h5 class="text-muted">Durum</h5>
+                <h2 class="fw-bold mb-0">Aktif</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="admin-card text-center">
+                <h5 class="text-muted">Sistem</h5>
+                <h2 class="fw-bold mb-0">Hazır</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table align-middle table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Başlık</th>
+                            <th>Yazar</th>
+                            <th>Tarih</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@item.Title</td>
+                                <td>@item.Author</td>
+                                <td>@item.CreatedAt.ToString("dd.MM.yyyy")</td>
+                                <td class="text-center">
+                                    <a asp-controller="AdminPosts" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1">
+                                        Düzenle
+                                    </a>
+                                    <a asp-controller="AdminPosts" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="info-card text-center">
+                <h4 class="fw-bold">Henüz kayıtlı blog yazısı yok</h4>
+                <p class="mb-3">İlk blog yazını oluşturarak yönetim panelini kullanmaya başlayabilirsin.</p>
+                <a asp-controller="AdminPosts" asp-action="Create" class="btn custom-btn-primary">İlk Yazıyı Oluştur</a>
+            </div>
+        }
+    </div>
+</div>

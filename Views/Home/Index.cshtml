@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <h1 class="hero-title">Merhaba, ben İlayda</h1>
+                <p class="hero-text mt-3">
+                    Bilgisayar mühendisliği öğrencisi olarak yazılım, teknoloji, öğrendiğim konular
+                    ve geliştirdiğim projeler üzerine içerikler paylaştığım kişisel bloguma hoş geldiniz.
+                </p>
+                <div class="mt-4 d-flex flex-wrap gap-3">
+                    <a asp-controller="Posts" asp-action="Index" class="btn custom-btn-primary">
+                        Blog Yazılarını Gör
+                    </a>
+                    <a asp-controller="Home" asp-action="About" class="btn custom-btn-outline">
+                        Hakkımda
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="profile-box text-center">
+                    <div class="profile-avatar">İ</div>
+                    <h3 class="fw-bold">İlayda Tech Blog</h3>
+                    <p class="text-muted mb-0">
+                        Yazılım, web geliştirme, C#, Python ve teknoloji notları
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title text-center">Bu Blogda Neler Var?</h2>
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h4 class="fw-bold">Yazılım Notları</h4>
+                    <p class="mb-0">
+                        C#, Python, algoritmalar ve programlama mantığı üzerine öğrendiklerimi paylaşıyorum.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h4 class="fw-bold">Proje Deneyimleri</h4>
+                    <p class="mb-0">
+                        Geliştirdiğim uygulamalar, karşılaştığım problemler ve çözüm süreçleri yer alıyor.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h4 class="fw-bold">Öğrenme Süreci</h4>
+                    <p class="mb-0">
+                        Bilgisayar mühendisliği yolculuğumda edindiğim deneyimleri düzenli olarak not alıyorum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="info-card">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <h3 class="fw-bold">Bu proje neden oluşturuldu?</h3>
+                    <p class="mb-0">
+                        Bu blog; hem teknik olarak ASP.NET Core MVC, Entity Framework ve CRUD mantığını uygulamak,
+                        hem de öğrendiklerimi kişisel bir platformda paylaşmak amacıyla geliştirildi.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a asp-controller="Home" asp-action="Contact" class="btn custom-btn-primary">
+                        İletişime Geç
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

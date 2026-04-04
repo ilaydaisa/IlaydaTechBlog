@@ -1,0 +1,33 @@
+@model IlaydaTechBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Yazıyı Sil";
+}
+
+<div class="container py-4">
+    <div class="page-header">
+        <h1>Yazıyı Sil</h1>
+        <p class="text-muted">Bu işlem geri alınamaz</p>
+    </div>
+
+    <div class="form-card">
+        <div class="alert alert-warning">
+            <strong>Dikkat:</strong> Bu blog yazısını silmek istediğine emin misin?
+        </div>
+
+        <h3 class="fw-bold">@Model.Title</h3>
+        <p class="text-muted">@Model.Author • @Model.CreatedAt.ToString("dd.MM.yyyy")</p>
+        <hr />
+        <p>
+            @(Model.Content.Length > 250 ? Model.Content.Substring(0, 250) + "..." : Model.Content)
+        </p>
+
+        <form asp-controller="AdminPosts" asp-action="Delete" method="post" class="mt-4">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger">Sil</button>
+                <a asp-controller="AdminPosts" asp-action="Index" class="btn btn-outline-secondary">Vazgeç</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+@model IlaydaTechBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Yazıyı Düzenle";
+}
+
+<div class="container py-4">
+    <div class="page-header">
+        <h1>Yazıyı Düzenle</h1>
+        <p class="text-muted">Mevcut blog içeriğini güncelle</p>
+    </div>
+
+    <div class="form-card">
+        <form asp-controller="AdminPosts" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label fw-semibold">Başlık</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Author" class="form-label fw-semibold">Yazar</label>
+                <input asp-for="Author" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label fw-semibold">İçerik</label>
+                <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CreatedAt" class="form-label fw-semibold">Oluşturulma Tarihi</label>
+                <input asp-for="CreatedAt" class="form-control" />
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn custom-btn-primary">Güncelle</button>
+                <a asp-controller="AdminPosts" asp-action="Index" class="btn btn-outline-secondary">Vazgeç</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

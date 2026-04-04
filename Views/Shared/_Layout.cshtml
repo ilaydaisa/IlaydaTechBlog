@@ -1,0 +1,99 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var isAdminLoggedIn = Context.Session.GetString("IsAdminLoggedIn") == "true";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - İlayda Tech Blog</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                    İlayda Tech Blog
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+
+                        @if (isAdminLoggedIn)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Posts" asp-action="Index">Bloglar</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About">Hakkımda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">İletişim</a>
+                        </li>
+
+                        @if (isAdminLoggedIn)
+                        {
+                            <li class="nav-item ms-lg-3">
+                                <a class="btn btn-warning btn-sm fw-semibold" asp-controller="AdminPosts" asp-action="Index">
+                                    Admin Panel
+                                </a>
+                            </li>
+                            <li class="nav-item ms-lg-2">
+                                <a class="btn btn-outline-light btn-sm" asp-controller="Admin" asp-action="Logout">
+                                    Çıkış
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item ms-lg-3">
+                                <a class="btn btn-warning btn-sm fw-semibold" asp-controller="Admin" asp-action="Login">
+                                    Admin Girişi
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pb-5">
+        @RenderBody()
+    </main>
+
+    <footer class="footer-section mt-5">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="fw-bold">İlayda Tech Blog</h5>
+                    <p class="mb-0">
+                        Yazılım, teknoloji ve öğrenme yolculuğum üzerine paylaşımlar yaptığım kişisel blog projesi.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-1">Bilgisayar Mühendisliği Öğrencisi</p>
+                    <p class="mb-0">© 2026 İlayda Tech Blog</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
